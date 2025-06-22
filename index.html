@@ -2,28 +2,28 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Contact Form</title>
   </head>
   <body>
-    <form action="" method="get" class="form-example">
-      <div class="form-example">
-        <label for="name">Enter your name: </label>
-        <input type="text" name="name" id="name" required />
-      </div>
-      <div class="form-example">
-        <label for="email">Enter your email: </label>
-        <input type="email" name="email" id="email" required />
-      </div>
-      <div>
-        <label for="story">Tell us your story:</label>
-        <textarea id="story" name="story" rows="5" cols="33">
-          It was a dark and stormy night...
-        </textarea>
-      </div>
-      <div class="form-example">
-        <input type="submit" value="Subscribe!" />
-      </div>
+    <h2>Contact us</h2>
+    <form action="send_email.php" method="post">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required />
+      <br />
+      <label for="subject">subject:</label>
+      <input type="text" id="subject" name="subject" required />
+      <br />
+
+      <label for="message">Message:</label>
+      <textarea
+        id="message"
+        name="message"
+        rows="5"
+        cols="33"
+        required
+      ></textarea>
+      <br />
+      <input type="submit" value="Send" />
     </form>
   </body>
 </html>
