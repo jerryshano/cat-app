@@ -30,10 +30,17 @@ export default async function handler(req, res) {
         : [];
 
       const attachments = await Promise.all(
-        uploadedFiles.map(async (file) => ({
-          filename: file.originalFilename,
-          content: await fs.promises.readFile(file.filepath),
-        }))
+        uploadedFiles.map(async (file) => {
+          const buffer =
+            file.filepath && fs.existsSync(file.filepath)
+              ? await fs.promises.readFile(file.filepath)
+              : file._writeStream?.getBuffer?.() || Buffer.from("");
+
+          return {
+            filename: file.originalFilename,
+            content: buffer,
+          };
+        })
       );
 
       const transporter = nodemailer.createTransport({
