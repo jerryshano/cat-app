@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import formidable from "formidable";
-import fs from "fs";
+import fs from "fs/promises"; // Update this at the top of your file
 
 export const config = {
   api: {
@@ -21,21 +21,38 @@ export default async function handler(req, res) {
       return res.status(400).send("Error parsing form");
     }
 
+    console.log("FIELDS:", fields);
+    console.log("FILES:", files);
+
     try {
-      const { name, message } = fields;
+      const name = fields.name || "No name provided";
+      const message = fields.message || "No message provided";
+
       const uploadedFiles = Array.isArray(files.attachments)
         ? files.attachments
         : files.attachments
         ? [files.attachments]
         : [];
 
-      console.log("Uploaded Files:", uploadedFiles);
-
+      // inside your handler function
       const attachments = await Promise.all(
-        uploadedFiles.map(async (file) => ({
-          filename: file.originalFilename || "attachment",
-          content: await file.toBuffer(), // 💥 This works in Vercel!
-        }))
+        uploadedFiles.map(async (file) => {
+          if (!file.filepath) {
+            console.warn("Missing filepath:", file);
+            return null;
+          }
+
+          try {
+            const buffer = await fs.readFile(file.filepath);
+            return {
+              filename: file.originalFilename || "attachment",
+              content: buffer,
+            };
+          } catch (err) {
+            console.error("Failed to read file:", file.filepath, err);
+            return null;
+          }
+        })
       );
 
       const transporter = nodemailer.createTransport({
@@ -55,13 +72,13 @@ export default async function handler(req, res) {
         subject: "New email with attachments",
         text: `Name: ${name}\nMessage: ${message}`,
         html: `<p>Name: ${name}</p><p>Message: ${message}</p>`,
-        attachments,
+        attachments: attachments.filter(Boolean),
       });
 
       res.status(200).send("Email sent!");
     } catch (e) {
-      console.error(e);
-      res.status(500).send("Internal Server Error");
+      console.error("SEND ERROR:", e);
+      res.status(500).send("Internal Server Error: " + e.message);
     }
   });
 }
