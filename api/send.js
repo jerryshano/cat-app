@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import formidable from "formidable-serverless";
+import formidable from "formidable";
 import fs from "fs";
 
 export const config = {
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     return res.status(405).send("Method Not Allowed");
   }
 
-  const form = new formidable.IncomingForm();
+  const form = formidable({ multiples: true, keepExtensions: true });
 
   form.parse(req, async (err, fields, files) => {
     if (err) {
@@ -29,18 +29,13 @@ export default async function handler(req, res) {
         ? [files.attachments]
         : [];
 
-      const attachments = await Promise.all(
-        uploadedFiles.map(async (file) => {
-          const buffer =
-            file.filepath && fs.existsSync(file.filepath)
-              ? await fs.promises.readFile(file.filepath)
-              : file._writeStream?.getBuffer?.() || Buffer.from("");
+      console.log("Uploaded Files:", uploadedFiles);
 
-          return {
-            filename: file.originalFilename,
-            content: buffer,
-          };
-        })
+      const attachments = await Promise.all(
+        uploadedFiles.map(async (file) => ({
+          filename: file.originalFilename || "attachment",
+          content: await file.toBuffer(), // 💥 This works in Vercel!
+        }))
       );
 
       const transporter = nodemailer.createTransport({
