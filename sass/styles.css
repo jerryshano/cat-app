@@ -14,7 +14,7 @@
 .all:before {
   height: 20rem;
   width: 2px;
-  background-color: #db242a;
+  background-color: #03045e;
   left: calc(50% - 1px);
   bottom: 20rem;
 }
@@ -26,7 +26,7 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-image: radial-gradient(circle at top left, #e97c7f, #db242a 50%, #af1d22);
+  background-image: radial-gradient(circle at top left, #0608c1, #03045e 50%, #01022d);
   z-index: 1;
 }
 .yarn:before, .yarn:after {

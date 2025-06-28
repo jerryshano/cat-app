@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="../sass/styles.css" />
+    <link rel="stylesheet" href="../sass/form.css" />
     <title>Contact Form</title>
   </head>
   <body>
@@ -132,18 +133,31 @@
       </div>
     </div>
 
-    <h2>Contact us</h2>
-    <form action="/api/send" method="post" enctype="multipart/form-data">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required /><br />
-
-      <label for="message">Message:</label>
-      <textarea id="message" name="message" rows="5" required></textarea><br />
-
-      <label for="attachments">Attachments:</label>
-      <input type="file" id="attachments" name="attachments" multiple /><br />
-
-      <input type="submit" value="Send" />
-    </form>
+    <div class="container">
+      <form action="/api/send" method="post" enctype="multipart/form-data">
+        <h3>Email Form</h3>
+        <div class="input-data">
+          <input type="text" id="name" name="name" required /><br />
+          <div class="underline"></div>
+          <label for="name">Name:</label>
+        </div>
+        <div class="input-data textarea">
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            cols="20"
+            required
+          ></textarea>
+          <br />
+          <div class="underline"></div>
+          <label for="message">Write your message</label>
+        </div>
+        <input id="" class="" type="file" name="attachments" multiple />
+        <div>
+          <input class="" type="submit" value="Send" />
+        </div>
+      </form>
+    </div>
   </body>
 </html>
