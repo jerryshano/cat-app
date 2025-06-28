@@ -26,7 +26,7 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-image: radial-gradient(circle at top left, #0608c1, #03045e 50%, #01022d);
+  background-image: radial-gradient(circle at top left, rgb(6.1546391753, 8.206185567, 192.8453608247), #03045e 50%, rgb(1.4226804124, 1.8969072165, 44.5773195876));
   z-index: 1;
 }
 .yarn:before, .yarn:after {
@@ -39,7 +39,7 @@
 }
 .yarn:before {
   left: calc(50% + 7px);
-  background-color: #b1bce6;
+  background-color: rgb(177.4155844156, 188.1168831169, 229.5844155844);
 }
 .yarn:after {
   right: calc(50% + 7px);
@@ -226,13 +226,13 @@
   right: 0;
   transform-origin: top right;
   transform: skewY(-40deg);
-  background-color: #d1e6f7;
+  background-color: rgb(208.6285714286, 229.606122449, 247.2714285714);
 }
 .cat-ear:last-child:before {
   right: 0;
   border-top-left-radius: 50%;
   border-bottom-left-radius: 50%;
-  background-color: #e0f0fc;
+  background-color: rgb(224.2727272727, 239.6363636364, 251.9272727273);
 }
 .cat-ear:before {
   width: 60%;
@@ -564,4 +564,6 @@ html {
 *:after {
   content: "";
   display: block;
-}/*# sourceMappingURL=styles.css.map */
+}
+
+/*# sourceMappingURL=styles.css.map */
