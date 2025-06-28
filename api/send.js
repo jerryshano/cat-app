@@ -17,12 +17,15 @@ export default async function handler(req, res) {
 
   form.parse(req, async (err, fields, files) => {
     if (err) {
-      console.error("Form parse error:", err);
-      return res.status(400).send("Error parsing form");
+      console.error("🛑 Form parse error:", err);
+      res
+        .status(500)
+        .json({ message: "Error parsing form", details: err.message });
+      return;
     }
 
-    console.log("FIELDS:", fields);
-    console.log("FILES:", files);
+    console.log("✅ Parsed fields:", fields);
+    console.log("📎 Parsed files:", files);
 
     try {
       const name = fields.name || "No name provided";
