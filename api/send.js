@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import formidable from "formidable";
-import fs from "fs/promises"; // Update this at the top of your file
+import fs from "fs/promises";
 
 export const config = {
   api: {

@@ -158,6 +158,87 @@
           <input class="" type="submit" value="Send" />
         </div>
       </form>
+
+      <!-- GPT Email Generator -->
+      <section id="gpt-email">
+        <h2>Ask GPT to Write an Email</h2>
+        <form id="gpt-form">
+          <textarea
+            id="gpt-prompt"
+            placeholder="e.g., Write a polite email asking for payment..."
+            rows="4"
+            style="width: 100%"
+          ></textarea>
+          <br />
+          <button type="submit">Generate Email</button>
+        </form>
+        <h3>Generated Email:</h3>
+        <pre
+          id="gpt-result"
+          style="white-space: pre-wrap; border: 1px solid #ccc; padding: 1em"
+        ></pre>
+      </section>
+
+      <!-- <script>
+        document
+          .getElementById("gpt-form")
+          .addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const prompt = document.getElementById("gpt-prompt").value;
+
+            const res = await fetch("/api/generate-email", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ prompt }),
+            });
+
+            const data = await res.json();
+            document.getElementById("gpt-result").textContent =
+              data.email || "Something went wrong.";
+          });
+      </script> -->
+
+      <script>
+        document
+          .getElementById("gpt-form")
+          .addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const prompt = document.getElementById("gpt-prompt").value;
+
+            try {
+              const res = await fetch("/api/generate-email", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ prompt }),
+              });
+
+              if (!res.ok) {
+                throw new Error("Network response was not ok");
+              }
+
+              const data = await res.json();
+              document.getElementById("gpt-result").textContent =
+                data.email || "No email generated.";
+            } catch (error) {
+              console.error(
+                "❌ GPT Error:",
+                err.response?.data || err.message || err
+              );
+              res.status(500).json({ error: "Failed to generate email" });
+            }
+          });
+      </script>
+
+      <script>
+        fetch("/api/hello")
+          .then((res) => res.json())
+          .then((data) => {
+            const p = document.createElement("p");
+            p.textContent = data.message;
+            document.body.appendChild(p);
+          })
+          .catch(console.error);
+      </script>
     </div>
   </body>
 </html>
