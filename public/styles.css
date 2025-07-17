@@ -26,10 +26,16 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-image: radial-gradient(circle at top left, rgb(6.1546391753, 8.206185567, 192.8453608247), #03045e 50%, rgb(1.4226804124, 1.8969072165, 44.5773195876));
+  background-image: radial-gradient(
+    circle at top left,
+    #efcfe3ff,
+    rgb(238, 119, 238) 50%,
+    rgb(131, 29, 92)
+  );
   z-index: 1;
 }
-.yarn:before, .yarn:after {
+.yarn:before,
+.yarn:after {
   position: absolute;
   width: 20px;
   height: 20px;
@@ -126,7 +132,13 @@
   width: 100%;
   height: 100%;
   border-radius: 100px;
-  background-image: radial-gradient(circle at 10px 50px, white, white 40%, #d5e8f8 65%, #8b9bd9);
+  background-image: radial-gradient(
+    circle at 10px 50px,
+    white,
+    white 40%,
+    #d5e8f8 65%,
+    #8b9bd9
+  );
   z-index: 1;
 }
 .cat-lower .cat-leg,
@@ -178,7 +190,13 @@
 .cat-head {
   width: 90px;
   height: 90px;
-  background-image: radial-gradient(circle at 10px 10px, white, white 40%, #d5e8f8 65%, #8b9bd9);
+  background-image: radial-gradient(
+    circle at 10px 10px,
+    white,
+    white 40%,
+    #d5e8f8 65%,
+    #8b9bd9
+  );
   border-radius: 50%;
   top: calc(100% - 45px);
 }
@@ -249,7 +267,8 @@
   height: 6px;
   animation: blink 7s step-end infinite both;
 }
-.cat-eyes:before, .cat-eyes:after {
+.cat-eyes:before,
+.cat-eyes:after {
   position: absolute;
   height: 6px;
   width: 6px;
@@ -276,7 +295,8 @@
   border-bottom-right-radius: 50% 70%;
   transform: translateZ(10px);
 }
-.cat-mouth:before, .cat-mouth:after {
+.cat-mouth:before,
+.cat-mouth:after {
   position: absolute;
   width: 90%;
   height: 100%;
@@ -308,7 +328,8 @@
   transform-style: preserve-3d;
   perspective: 60px;
 }
-.cat-whiskers:before, .cat-whiskers:after {
+.cat-whiskers:before,
+.cat-whiskers:after {
   position: absolute;
   height: 100%;
   width: 30%;
@@ -534,23 +555,19 @@
   }
 }
 @keyframes blink {
-  from, to, 10%, 25%, 80% {
+  from,
+  to,
+  10%,
+  25%,
+  80% {
     transform: scaleY(1);
   }
-  8%, 23%, 78% {
+  8%,
+  23%,
+  78% {
     transform: scaleY(0.1);
   }
 }
-body,
-html {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #1f1f3c;
-  overflow: hidden;
-}
-
 *,
 *:before,
 *:after {

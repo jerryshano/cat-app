@@ -28,7 +28,7 @@ export default async function handler(req, res) {
     console.log("📎 Parsed files:", files);
 
     try {
-      const name = fields.name || "No name provided";
+      const subject = fields.subject || "No name provided";
       const message = fields.message || "No message provided";
 
       const uploadedFiles = Array.isArray(files.attachments)
@@ -73,8 +73,8 @@ export default async function handler(req, res) {
         cc: "quinleyslaw@yahoo.com",
         bcc: "mesv80@gmail.com",
         subject: "New email with attachments",
-        text: `Name: ${name}\nMessage: ${message}`,
-        html: `<p>Name: ${name}</p><p>Message: ${message}</p>`,
+        text: `Name: ${subject}\nMessage: ${message}`,
+        html: `<p>Subject: ${subject}</p><p>Message: ${message}</p>`,
         attachments: attachments.filter(Boolean),
       });
 

@@ -3,7 +3,7 @@ $color-fur-light: #d5e8f8;
 $color-fur-dark: #8b9bd9;
 $color-features: #4b4d75;
 $color-features-light: #9fa2cb;
-$color-yarn: #03045e;
+$color-yarn: #efcfe3ff;
 $duration: 7s;
 $easing: cubic-bezier(0.5, 0, 0.5, 1);
 $offset: 0.5s;
@@ -481,16 +481,6 @@ $total-swings: length($swings);
   78% {
     transform: scaleY(0.1);
   }
-}
-
-body,
-html {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: $color-bg;
-  overflow: hidden;
 }
 
 *,
