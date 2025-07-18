@@ -43,12 +43,6 @@ body {
   --light-blue: #7fb2b6;
   --button-dark: #354a5f;
 }
-/* .dark-mode {
-  --background-color: black;
-  --text-color: white;
-  --button-dark: lightblue;
-} */
-
 #darkModeToggle {
   background-color: var(--button-dark);
   border-radius: 8px;

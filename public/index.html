@@ -255,7 +255,7 @@
             const data = await res.json();
             document.getElementById("gpt-result").textContent =
               data.email || "No email generated.";
-          } catch (error) {
+          } catch (err) {
             console.error(
               "❌ GPT Error:",
               err.response?.data || err.message || err
